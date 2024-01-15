@@ -1,0 +1,178 @@
+@prefix cbkmm: <http://purl.org/cbkmm/>.
+@prefix c: <http://purl.org/cbkmm/constraints/>.
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix schema: <http://schema.org/>.
+
+cbkmm:KnowledgeResource rdfs:subClassOf cbkmm:KnowledgeArtifact.
+
+cbkmm:KnowledgeResource a sh:NodeShape;
+  sh:targetClass cbkmm:KnowledgeResource;
+  sh:property [
+    sh:path dct:title ;
+    sh:nodeKind sh:Literal;
+    sh:name "Title" ;
+    sh:uniqueLang true;
+    sh:minCount 1 ;
+    sh:order 0;
+  ],
+  [
+    sh:path dct:description ;
+    sh:nodeKind sh:Literal;
+    sh:name "Description" ;
+    sh:uniqueLang true;
+    sh:minCount 1 ;
+    sh:order 1;
+  ],
+  [
+    sh:path dct:subject ;
+    sh:nodeKind sh:IRI;
+    sh:name "Subject" ;
+    sh:description "One or more concepts from MeSH or similar that reflect the subject area of the knowledge.";
+    sh:minCount 1 ;
+    sh:order 2;
+  ],
+  [
+    sh:path dct:creator ;
+    sh:nodeKind sh:IRI;
+    sh:name "Creator" ;
+    sh:minCount 1 ;
+    sh:group c:PubInfo;
+    sh:order 1;
+  ],
+  [
+    sh:path dct:publisher ;
+    sh:nodeKind sh:IRI;
+    sh:name "Publisher" ;
+    sh:minCount 1 ;
+    sh:group c:PubInfo;
+    sh:order 2;
+  ],
+  [
+    sh:path dct:language ;
+    sh:nodeKind sh:IRI;
+    sh:name "Language" ;
+    sh:minCount 1 ;
+    sh:group c:PubInfo;
+    sh:order 3;
+  ],
+  [
+    sh:path dct:issued ;
+    sh:nodeKind sh:Literal;
+    sh:datatype xsd:date;
+    sh:name "Issued" ;
+    sh:order 4 ;
+    sh:minCount 1;
+    sh:group c:PubInfo;
+  ],
+  [
+    sh:path dct:modified ;
+    sh:nodeKind sh:Literal;
+    sh:datatype xsd:date;
+    sh:name "Modified" ;
+    sh:order 5 ;
+    sh:group c:PubInfo;
+  ],
+  [
+    sh:path [ sh:inversePath cbkmm:concretizes ] ;
+    sh:nodeKind sh:IRI;
+    sh:name "concretization" ;
+    sh:description "Knowledge resources (including knowledge artifacts) can have more concrete representations. For instance, multiple files with different formats may provide the same knowledge, but with different representations.";
+    sh:class cbkmm:KnowledgeArtifact;
+    sh:order 2;
+    sh:group c:MISKR;
+  ],
+  [
+    sh:path [ sh:inversePath dct:isPartOf ] ;
+    sh:nodeKind sh:IRI;
+    sh:name "has part" ;
+    sh:description "Knowledge resources can be composed of multiple parts, the totality of the parts comprising the whole. For instance, a database can be stored one file per table.";
+    sh:class cbkmm:KnowledgeArtifact;
+    sh:order 2;
+    sh:group c:MISKR;
+  ],
+  [
+    sh:path cbkmm:landingPage ;
+    sh:nodeKind sh:IRI;
+    sh:name "Landing Page" ;
+    sh:order 10;
+    sh:group c:MIAKA;
+  ]
+.
+
+cbkmm:KnowledgeArtifact a sh:NodeShape;
+  sh:targetClass cbkmm:KnowledgeArtifact;
+  sh:property [
+    sh:path dct:title ;
+    sh:nodeKind sh:Literal;
+    sh:name "Title" ;
+    sh:uniqueLang true;
+    sh:minCount 1 ;
+    sh:order 0;
+  ],
+  [
+    sh:path dct:description ;
+    sh:nodeKind sh:Literal;
+    sh:name "Description" ;
+    sh:uniqueLang true;
+    sh:order 1;
+  ],
+  [
+    sh:path dct:isVersionOf ;
+    sh:nodeKind sh:IRI;
+    sh:name "has revision" ;
+    sh:description "Knowledge artifacts can be revised or versioned, with subsequent versions linking to the prior one.";
+    sh:class cbkmm:KnowledgeArtifact;
+    sh:order 2;
+    sh:group c:MISKR;
+  ],
+  [
+    sh:path cbkmm:subset;
+    sh:nodeKind sh:IRI;
+    sh:name "has subset" ;
+    sh:description "Knowledge artifacts be abridged or subsetted, where the subset has some of the knowledge of the source.";
+    sh:class cbkmm:KnowledgeArtifact;
+    sh:order 3;  
+    sh:group c:MISKR;
+  ],
+  [
+    sh:path dct:format ;
+    sh:nodeKind sh:IRI;
+    sh:name "Media Type" ;
+    sh:order 22;
+    sh:group c:MIAKA;
+  ],
+  [ 
+    sh:path cbkmm:downloadURL;
+    sh:name "Download URL" ;
+    sh:nodeKind sh:IRI;
+    sh:order 20;
+    sh:group c:MIAKA;
+  ],
+  [
+    sh:path cbkmm:endpointURL;
+    sh:name "Endpoint URL" ;
+    sh:nodeKind sh:IRI;
+    sh:order 21;
+    sh:group c:MIAKA;
+  ]
+.
+
+c:MIAKA a sh:PropertyGroup ;
+	sh:order 5 ;
+	rdfs:label "Access" .
+
+c:MISKR a sh:PropertyGroup ;
+	sh:order 4 ;
+	rdfs:label "Structure" .
+
+
+c:PubInfo a sh:PropertyGroup ;
+	sh:order 3 ;
+	rdfs:label "Publication Details" .
