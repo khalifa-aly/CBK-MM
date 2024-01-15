@@ -26,8 +26,7 @@ c:MIAKResource a sh:NodeShape;
     	sh:path cbkmm:landingPage ;
 	   	sh:nodeKind sh:IRI;
        	sh:name "Landing Page" ;
-        sh:minCount 0 ;
-        sh:order 1;
+        sh:order 10;
     ]
 .
 
@@ -37,24 +36,19 @@ c:MIAKArtifact a sh:NodeShape;
     	sh:path dct:format ;
 	   	sh:nodeKind sh:IRI;
        	sh:name "Media Type" ;
-        sh:minCount 1 ;
-        sh:order 1;
+        sh:order 22;
     ],
-	[
-    	sh:or (
-          [ 
-            sh:path cbkmm:downloadURL;
-	       	sh:name "Download URL" ;
-		   	sh:nodeKind sh:IRI;
-          ]
-          [
-            sh:path cbkmm:endpointURL;
-	       	sh:name "Endpoint URL" ;
-		   	sh:nodeKind sh:IRI;
-          ]
-        ) ;
-        sh:minCount 1 ;
-        sh:order 1;
+    [ 
+        sh:path cbkmm:downloadURL;
+        sh:name "Download URL" ;
+   	sh:nodeKind sh:IRI;
+        sh:order 20;
+    ],
+    [
+        sh:path cbkmm:endpointURL;
+       	sh:name "Endpoint URL" ;
+   	sh:nodeKind sh:IRI;
+        sh:order 21;
     ]
 .
 
@@ -66,7 +60,6 @@ c:MISKResource a sh:NodeShape;
        	sh:name "concretization" ;
         sh:description "Knowledge resources (including knowledge artifacts) can have more concrete representations. For instance, multiple files with different formats may provide the same knowledge, but with different representations.";
         sh:class cbkmm:KnowledgeArtifact;
-        sh:minCount 0 ;
         sh:order 2;
     ],
 	[
@@ -75,7 +68,6 @@ c:MISKResource a sh:NodeShape;
        	sh:name "has part" ;
         sh:description "Knowledge resources can be composed of multiple parts, the totality of the parts comprising the whole. For instance, a database can be stored one file per table.";
         sh:class cbkmm:KnowledgeArtifact;
-        sh:minCount 0 ;
         sh:order 2;
       
     ]
@@ -90,7 +82,6 @@ c:MISKArtifact a sh:NodeShape;
        	sh:name "has revision" ;
         sh:description "Knowledge artifacts can be revised or versioned, with subsequent versions linking to the prior one.";
         sh:class cbkmm:KnowledgeArtifact;
-        sh:minCount 0 ;
         sh:order 2;
     ],
 	[
@@ -99,7 +90,6 @@ c:MISKArtifact a sh:NodeShape;
        	sh:name "has subset" ;
         sh:description "Knowledge artifacts be abridged or subsetted, where the subset has some of the knowledge of the source.";
         sh:class cbkmm:KnowledgeArtifact;
-        sh:minCount 0 ;
         sh:order 3;
       
     ]
@@ -107,7 +97,6 @@ c:MISKArtifact a sh:NodeShape;
 
 c:MIDKResource a sh:NodeShape ;
     sh:targetClass cbkmm:KnowledgeResource ;
-	sh:node c:Labeled;
     sh:property [
     	sh:path dct:title ;
 	   	sh:nodeKind sh:Literal;
@@ -121,7 +110,6 @@ c:MIDKResource a sh:NodeShape ;
 	   	sh:nodeKind sh:Literal;
        	sh:name "Description" ;
 		sh:uniqueLang true;
-        sh:minCount 0 ;
         sh:order 1;
     ],
 	[
@@ -163,14 +151,17 @@ c:MIDKResource a sh:NodeShape ;
 	[
     	sh:path dct:issued ;
 	   	sh:nodeKind sh:Literal;
-        sh:or (
-          [ sh:datatype xsd:date; ]
-          [ sh:datatype xsd:dateTime; ]
-        );
         sh:datatype xsd:date;
        	sh:name "Issued" ;
-		sh:uniqueLang true;
-        sh:minCount 4 ;
+        sh:order 4 ;
+        sh:minCount 1;
+    ],
+	[
+    	sh:path dct:modified ;
+	   	sh:nodeKind sh:Literal;
+        sh:datatype xsd:date;
+       	sh:name "Modified" ;
+        sh:order 5 ;
     ]
 .
 
@@ -181,13 +172,30 @@ c:PubInfo a sh:PropertyGroup ;
 c:Labeled a sh:NodeShape ;
     sh:property [
         sh:or (
-          [ sh:path rdfs:label; ]
-          [ sh:path skos:prefLabel; ]
-          [ sh:path dct:title; ]
-          [ sh:path schema:name; ]
+          [
+            sh:path rdfs:label; 
+            sh:nodeKind sh:Literal;
+            sh:uniqueLang true;
+            sh:minCount 1 ;
+          ]
+          [ 
+            sh:path skos:prefLabel; 
+            sh:nodeKind sh:Literal;
+            sh:uniqueLang true;
+            sh:minCount 1 ;
+          ]
+          [ 
+            sh:path dct:title; 
+            sh:nodeKind sh:Literal;
+            sh:uniqueLang true;
+            sh:minCount 1 ;
+          ]
+          [ 
+            sh:path schema:name; 
+            sh:nodeKind sh:Literal;
+            sh:uniqueLang true;
+            sh:minCount 1 ;
+          ]
         );
-	   	sh:nodeKind sh:Literal;
        	sh:name "Name" ;
-		sh:uniqueLang true;
-        sh:minCount 1 ;
     ].
