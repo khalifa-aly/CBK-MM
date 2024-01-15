@@ -12,9 +12,54 @@
 
 cbkmm:KnowledgeResource rdfs:subClassOf cbkmm:KnowledgeArtifact.
 
+c:MICBKResource a sh:NodeShape;
+	sh:targetClass cbkmm:KnowledgeResource;
+  	sh:node c:MISKResource, c:MIDKResource, c:MIAKResource.
+
+c:MICBKArtifact a sh:NodeShape;
+	sh:targetClass cbkmm:KnowledgeArtifact;
+	sh:node c:MIAKArtifact, c:MISKArtifact.
+
+c:MIAKResource a sh:NodeShape;
+  	sh:targetClass cbkmm:KnowledgeResource;
+	sh:property [
+    	sh:path cbkmm:landingPage ;
+	   	sh:nodeKind sh:IRI;
+       	sh:name "Landing Page" ;
+        sh:minCount 0 ;
+        sh:order 1;
+    ]
+.
+
+c:MIAKArtifact a sh:NodeShape;
+  	sh:targetClass cbkmm:KnowledgeArtifact;
+	sh:property [
+    	sh:path dct:format ;
+	   	sh:nodeKind sh:IRI;
+       	sh:name "Media Type" ;
+        sh:minCount 1 ;
+        sh:order 1;
+    ],
+	[
+    	sh:or (
+          [ 
+            sh:path cbkmm:downloadURL;
+	       	sh:name "Download URL" ;
+		   	sh:nodeKind sh:IRI;
+          ]
+          [
+            sh:path cbkmm:endpointURL;
+	       	sh:name "Endpoint URL" ;
+		   	sh:nodeKind sh:IRI;
+          ]
+        ) ;
+        sh:minCount 1 ;
+        sh:order 1;
+    ]
+.
+
 c:MISKResource a sh:NodeShape;
 	sh:targetClass cbkmm:KnowledgeResource;
-	sh:node c:Labeled;
 	sh:property [
     	sh:path [ sh:inversePath cbkmm:concretizes ] ;
 	   	sh:nodeKind sh:IRI;
