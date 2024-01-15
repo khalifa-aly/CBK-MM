@@ -1,0 +1,65 @@
+@prefix mesh: <http://purl.bioontology.org/ontology/FMESH/>.
+@prefix orcid: <https://orcid.org/> .
+@prefix : <https://purl.org/whyis/local/mcbk/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+
+@prefix wikidata: <http://wikidata.org/>.
+@prefix dcat: <http://www.w3.org/ns/dcat#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix cbkmm: <http://purl.org/cbkmm/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix pv: <http://purl.org/net/provenance/ns#>. 
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+
+:ctd
+  rdf:type cbkmm:KnowledgeResource, cbkmm:BiomedicalDatabase ;
+  dct:title "Comparative Toxicogenomics Database"@en ;
+  dct:title "Comparative Toxicogenomics Database"@fr ;
+  dct:description "CTD is a robust, publicly available database that aims to advance understanding about how environmental exposures affect human health. It provides manually curated information about chemical–gene/protein interactions, chemical–disease and gene–disease relationships. These data are integrated with functional and pathway data to aid in development of hypotheses about the mechanisms underlying environmentally influenced diseases.";
+  dct:subject mesh:D004194, mesh:D005796, mesh:D010641, mesh:D011506, mesh:D001244, mesh:D000715;
+  dct:creator orcid:0000-0002-2146-9436 ;
+  dct:issued "2011-12-05"^^xsd:date ;
+  dct:modified "2021-12-15"^^xsd:date ;
+  dct:publisher wikidata:Q1132346 ;
+  dct:language <http://id.loc.gov/vocabulary/iso639-1/en>  ;
+  dct:hasPart :ctd_chem_gene_ixns ;
+  .
+
+:ctd_chem_gene_ixns a cbkmm:KnowledgeArtifact;
+  dct:title "Chemical–gene interactions"@en ;
+  dct:subject mesh:D005796.
+
+:ctd_chem_gene_ixns_csv
+  a cbkmm:KnowledgeArtifact, pv:File ;
+  cbkmm:concretizes :ctd_chem_gene_ixns;
+  dcat:downloadURL <http://ctdbase.org/reports/CTD_chem_gene_ixns.csv.gz> ;
+  dct:title "Chemical–gene interactions in CSV"@en ;
+  cbkmm:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+  cbkmm:byteSize "32505856"^^xsd:decimal ;
+  .
+
+:ctd_chem_gene_ixns_tsv
+  a cbkmm:KnowledgeArtifact, pv:File ;
+  cbkmm:concretizes :ctd_chem_gene_ixns;
+  dct:title "Chemical–gene interactions in TSV"@en ;
+  cbkmm:downloadURL <http://ctdbase.org/reports/CTD_chem_gene_ixns.tsv.gz> .
+
+
+:ctd_chem_gene_ixns_xml
+  a cbkmm:KnowledgeArtifact, pv:File ;
+  cbkmm:concretizes :ctd_chem_gene_ixns;
+  dct:title "Chemical–gene interactions in XML"@en ;
+  cbkmm:downloadURL <http://ctdbase.org/reports/CTD_chem_gene_ixns.xml.gz> .
+
+mesh:D004194 a skos:Concept; skos:prefLabel "Disease".
+mesh:D005796 a skos:Concept;  skos:prefLabel "Gene".
+mesh:D010641 a skos:Concept;  skos:prefLabel "Phenotype".
+mesh:D011506 a skos:Concept;  skos:prefLabel "Protein".
+mesh:D001244 a skos:Concept;  skos:prefLabel "Associations".
+mesh:D000715 a skos:Concept;  skos:prefLabel "Anatomy".
+
+wikidata:Q1132346 rdfs:label "North Carolina State University".
+orcid:0000-0002-2146-9436 rdfs:label "Carolyn Mattingly".
