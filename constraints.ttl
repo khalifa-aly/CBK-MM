@@ -80,7 +80,7 @@ cbkmm:KnowledgeResource a sh:NodeShape;
     sh:group c:PubInfo;
   ],
   [
-    sh:path [ sh:inversePath cbkmm:concretizes ] ;
+    sh:path cbkmm:concretization ;
     sh:nodeKind sh:IRI;
     sh:name "concretization" ;
     sh:description "Knowledge resources (including knowledge artifacts) can have more concrete representations. For instance, multiple files with different formats may provide the same knowledge, but with different representations.";
