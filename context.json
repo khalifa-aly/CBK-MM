@@ -1,0 +1,92 @@
+{
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "i18n" : "https://www.w3.org/ns/i18n#",
+    "cbkmm" : "http://purl.org/cbkmm/",
+    "Artifact": "cbkmm:KnowledgeArtifact",
+    "Resource": "cbkmm:KnowledgeResource",
+    "Concept" : "skos:Concept",
+    "label" : {
+      "@id" : "rdfs:label",
+      "@type" : "xsd:string"
+    },
+    "@comment" : "MIDKR properties",
+    "title": {
+      "@id" : "dcterms:title",
+      "@type" : "xsd:string"
+    },
+    "description": {
+      "@id" : "dcterms:description",
+      "@type" : "xsd:string"
+    },
+    "subject": {
+      "@id" : "dcterms:subject",
+      "@type" : "@id"
+    },
+    "creator": {
+      "@id" : "dcterms:creator",
+      "@type" : "@id"
+    },
+    "publisher": {
+      "@id" : "dcterms:publisher",
+      "@type" : "@id"
+    },
+    "language": {
+      "@id" : "dcterms:language",
+      "@type" : "@id"
+    },
+    "language": {
+      "@id" : "dcterms:language",
+      "@type" : "@id"
+    },
+    "issued": {
+      "@id" : "dcterms:issued",
+      "@type" : "xsd:date"
+    },
+    "modified": {
+      "@id" : "dcterms:modified",
+      "@type" : "xsd:date"
+    },
+    "@comment" : "MISKR properties",    
+    "concretization": {
+      "@id" : "cbkmm:concretization",
+      "@type" : "@id"
+    },
+    "hasPart": {
+      "@id" : "dcterms:hasPart",
+      "@type" : "@id"
+    },
+    "isVersionOf": {
+      "@id" : "dcterms:isVersionOf",
+      "@type" : "@id"
+    },
+    "subset": {
+      "@id" : "cbkmm:subset",
+      "@type" : "@id"
+    },
+    "@comment" : "MIAKA properties",
+    "landingPage": {
+      "@id" : "cbkmm:landingPage",
+      "@type" : "@id"
+    },
+    "format": {
+      "@id" : "dct:format",
+      "@type" : "@id"
+    },
+    "downloadURL": {
+      "@id" : "cbkmm:downloadURL",
+      "@type" : "@id"
+    },
+    "endpointURL": {
+      "@id" : "cbkmm:endpointURL",
+      "@type" : "@id"
+    },
+    "@comment" : "Suggested external resource prefixes",
+    "media" : "https://www.iana.org/assignments/media-types",
+    "mesh" : "http://purl.bioontology.org/ontology/FMESH/",
+    "snomed" : "http://snomed.info/id/",
+    "wd" : "http://wikidata.org/entity/",
+    "orcid" : "https://orcid.org/"
+}
