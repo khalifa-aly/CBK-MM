@@ -1,0 +1,46 @@
+{
+  "@context": "https://raw.githubusercontent.com/jpmccu/CBK-MM/main/context.json",
+  "@id": "http://[resource uri]",
+  "@type": "Resource",
+  "title": "...",
+  "description": "...",
+  "subject": [
+    "snomed:...",
+    "mesh:..."
+  ],
+  "creator": [
+    "orcid:...",
+    "wd:..."
+  ],
+  "publisher": [
+    "orcid:...",
+    "wd:..."
+  ],
+  "landingPage": "http://[resource homepage url]",
+  "language": "i18n:en",
+  "issued": "YYYY/MM/DD",
+  "modified": "YYYY/MM/DD",
+  "@comment": "any of hasPart, concretizes, or subset, one Resource to Many.",
+  "hasPart|concretizes|subset": [
+    {
+      "@id": "http://[artifact uri]",
+      "@type": "Artifact",
+      "title": "...",
+      "description": "...",
+      "language": "i18n:en",
+      "issued": "YYYY/MM/DD",
+      "modified": "YYYY/MM/DD",
+      "mediaType": "media:type/subtype",
+      "@comment": "these should be mutually exclusive.",
+      "downloadURL": "http://[direct download url]",
+      "accessURL": "http://[direct API endpoint url]",
+      "isVersionOf|subset|concretizes|hasPart|": [
+        {
+          "@id": "http://[sub-artifact uri",
+          "@type": "Artifact",
+          "@comment": "Add sub-artifacts as needed."
+        }
+      ]
+    }
+  ]
+}
