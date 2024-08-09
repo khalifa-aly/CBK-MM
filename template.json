@@ -21,7 +21,7 @@
   "issued": "YYYY/MM/DD",
   "modified": "YYYY/MM/DD",
   "@comment": "any of hasPart, concretizes, or subset, one Resource to Many.",
-  "hasPart|concretizes|subset": [
+  "hasPart|concretization|subset": [
     {
       "@id": "http://[artifact uri]",
       "@type": "Artifact",
@@ -34,7 +34,7 @@
       "@comment": "these should be mutually exclusive.",
       "downloadURL": "http://[direct download url]",
       "accessURL": "http://[direct API endpoint url]",
-      "isVersionOf|subset|concretizes|hasPart|": [
+      "isVersionOf|subset|concretization|hasPart|": [
         {
           "@id": "http://[sub-artifact uri",
           "@type": "Artifact",
